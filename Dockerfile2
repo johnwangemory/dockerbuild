@@ -1,8 +1,9 @@
-FROM docker.io/emorylits/jboss51
+FROM jboss/wildfly
 MAINTAINER John Wang "john.wang@emory.edu"
 
-COPY /home/zwang28/sources/clinicalTrials.war /opt/jboss-5.1.0.GA/server/all/deploy
-COPY /home/zwang28/sources/clinicalTrials-ds.xml /opt/jboss-5.1.0.GA/server/all/deploy
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c", "standalone-full.xml", "-b", "0.0.0.0"]
 
-EXPOSE 8080
+RUN curl -L https://github.com/javaee-samples/javaee7-simple-sample/releases/download/v1.10/javaee7-simple-sample-1.10.war -o /opt/jboss/wildfly/standalone/deployments/javaee7-simple-sample.war
+
+
 
